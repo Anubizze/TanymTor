@@ -1,0 +1,7 @@
+import type { AnalysisConfig, ClassSubjectSeries, Grade, SignalEvaluation, StudentSubjectSeries, WeeklyPoint } from "./types";
+export declare const SIGNAL_DISCLAIMER = "\u0421\u0438\u0441\u0442\u0435\u043C\u0430 \u0444\u0438\u043A\u0441\u0438\u0440\u0443\u0435\u0442 \u0438\u0437\u043C\u0435\u043D\u0435\u043D\u0438\u0435 \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442\u0430, \u043D\u043E \u043D\u0435 \u0443\u0441\u0442\u0430\u043D\u0430\u0432\u043B\u0438\u0432\u0430\u0435\u0442 \u0435\u0433\u043E \u043F\u0440\u0438\u0447\u0438\u043D\u0443. \u0420\u0435\u0448\u0435\u043D\u0438\u0435 \u043E \u043F\u0440\u0438\u0447\u0438\u043D\u0435 \u0438 \u0432\u0438\u0434\u0435 \u0434\u043E\u043F\u043E\u043B\u043D\u0438\u0442\u0435\u043B\u044C\u043D\u043E\u0439 \u0440\u0430\u0431\u043E\u0442\u044B \u043F\u0440\u0438\u043D\u0438\u043C\u0430\u0435\u0442 \u043F\u0435\u0434\u0430\u0433\u043E\u0433.";
+export declare function evaluateGrades(grades: Grade[], config?: AnalysisConfig): SignalEvaluation[];
+export declare function evaluateStudentSubject(series: StudentSubjectSeries, classSeries: ClassSubjectSeries | undefined, config?: AnalysisConfig): SignalEvaluation;
+export declare function buildSignalId(studentId: string, subjectId: string, weekStart: string): string;
+export declare function countConsecutiveDeclines(points: WeeklyPoint[]): number;
+//# sourceMappingURL=signals.d.ts.map
