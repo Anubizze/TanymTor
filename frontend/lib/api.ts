@@ -1,11 +1,7 @@
-export class ApiError extends Error {
-  constructor(
-    public status: number,
-    message: string
-  ) {
-    super(message);
-  }
-}
+import { ApiError } from "./api-error";
+import { LOCAL_DATA_MODE } from "./data-mode";
+
+export { ApiError } from "./api-error";
 
 let authToken: string | null = null;
 let onUnauthorized: (() => void) | null = null;
@@ -21,6 +17,18 @@ export function setUnauthorizedHandler(handler: (() => void) | null): void {
 const REQUEST_TIMEOUT_MS = 12_000;
 
 export async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
+  if (LOCAL_DATA_MODE) {
+    const requestToken = authToken;
+    const { localApi } = await import("./local-api");
+    try {
+      return await localApi<T>(path, init, requestToken);
+    } catch (error) {
+      if (error instanceof ApiError && error.status === 401 && !path.endsWith("/login")) {
+        onUnauthorized?.();
+      }
+      throw error;
+    }
+  }
   const headers = new Headers(init.headers);
   if (init.body && !headers.has("Content-Type")) {
     headers.set("Content-Type", "application/json");
@@ -49,16 +57,12 @@ export async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
     clearTimeout(timer);
   }
 
-  if (response.status === 401) {
-    onUnauthorized?.();
-    throw new ApiError(401, "Нужно войти в аккаунт");
-  }
-
   const data = (await response.json().catch(() => ({}))) as {
     error?: string;
   } & T;
 
   if (!response.ok) {
+    if (response.status === 401 && !path.endsWith("/login")) onUnauthorized?.();
     throw new ApiError(
       response.status,
       data.error ?? `Ошибка запроса (${response.status})`

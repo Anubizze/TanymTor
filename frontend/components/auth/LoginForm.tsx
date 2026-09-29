@@ -16,6 +16,7 @@ import {
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { DEMO_CREDENTIALS, useAuthStore } from "@/store/useAuthStore";
+import { LocalDataNotice } from "@/components/data/LocalDataNotice";
 
 export function LoginForm() {
   const router = useRouter();
@@ -50,6 +51,7 @@ export function LoginForm() {
 
   return (
     <div>
+      <LocalDataNotice />
       <div className="mb-8 lg:hidden">
         <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-accent-600 text-white shadow-lg shadow-brand-500/40">
           <GraduationCap size={24} />

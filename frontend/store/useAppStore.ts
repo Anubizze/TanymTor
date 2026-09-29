@@ -3,6 +3,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { DEFAULT_CLASS_ID, DEFAULT_SUBJECT_ID } from "@/data/seed";
 import { api } from "@/lib/api";
+import { LOCAL_DATA_MODE } from "@/lib/data-mode";
 import {
   calculateClassPercentage,
   calculateClassStageResults,
@@ -448,7 +449,7 @@ export const useAppStore = create<AppState>()(
       },
     }),
     {
-      name: "tanymtor-storage",
+      name: LOCAL_DATA_MODE ? "tanymtor-local-selection" : "tanymtor-storage",
       version: 5,
       partialize: (state) => ({
         activeClassId: state.activeClassId,

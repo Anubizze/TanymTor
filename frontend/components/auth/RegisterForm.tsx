@@ -17,6 +17,8 @@ import {
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { useAuthStore } from "@/store/useAuthStore";
+import { LOCAL_DATA_MODE } from "@/lib/data-mode";
+import { LocalDataNotice } from "@/components/data/LocalDataNotice";
 
 export function RegisterForm() {
   const register = useAuthStore((s) => s.register);
@@ -53,6 +55,7 @@ export function RegisterForm() {
 
   return (
     <div>
+      <LocalDataNotice />
       <div className="mb-8 lg:hidden">
         <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-accent-600 text-white shadow-lg shadow-brand-500/40">
           <GraduationCap size={24} />
@@ -64,14 +67,16 @@ export function RegisterForm() {
           Создать аккаунт
         </h1>
         <p className="mt-2 text-sm text-slate-500">
-          Заявку смотрит администратор. После одобрения можно войти как учитель.
+          {LOCAL_DATA_MODE
+            ? "Создайте демо-аккаунт. Одобрить его можно в демо-админке в этом же браузере."
+            : "Заявку смотрит администратор. После одобрения можно войти как учитель."}
         </p>
       </div>
 
       {pending ? (
         <div className="rounded-2xl border border-emerald-200 bg-white p-7 text-center shadow-[0_1px_2px_0_rgb(15_23_42/0.04),0_14px_34px_-16px_rgb(15_23_42/0.18)]">
           <CheckCircle2 className="mx-auto mb-3 text-emerald-500" size={32} />
-          <p className="text-lg font-semibold text-slate-900">Заявка ушла админу</p>
+          <p className="text-lg font-semibold text-slate-900">{LOCAL_DATA_MODE ? "Заявка сохранена в браузере" : "Заявка ушла админу"}</p>
           <p className="mt-2 text-sm leading-relaxed text-slate-500">
             Когда аккаунт одобрят, войдите тем же email и паролем. До этого
             журнал закрыт.

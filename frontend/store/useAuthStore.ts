@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { api, ApiError, setApiToken, setUnauthorizedHandler } from "@/lib/api";
 import type { AuthResult, RegisterData, Teacher } from "@/lib/auth-types";
+import { LOCAL_DATA_MODE } from "@/lib/data-mode";
 import {
   validateEmail,
   validateName,
@@ -101,7 +102,7 @@ export const useAuthStore = create<AuthState>()(
       };
     },
     {
-      name: "tanymtor-auth",
+      name: LOCAL_DATA_MODE ? "tanymtor-local-auth" : "tanymtor-auth",
       version: 4,
       migrate: () => ({ currentUser: null, token: null }),
       partialize: (state) => ({

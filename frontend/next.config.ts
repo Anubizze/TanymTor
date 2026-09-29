@@ -9,6 +9,7 @@ const backendTarget =
 const nextConfig: NextConfig = {
   outputFileTracingRoot: path.join(__dirname, ".."),
   async rewrites() {
+    if (process.env.NEXT_PUBLIC_DATA_MODE !== "api") return [];
     return [
       {
         source: "/api/:path*",

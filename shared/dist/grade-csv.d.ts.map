@@ -1,0 +1,1 @@
+{"version":3,"file":"grade-csv.d.ts","sourceRoot":"","sources":["../src/grade-csv.ts"],"names":[],"mappings":"AAAA,MAAM,WAAW,cAAc;IAC7B,IAAI,EAAE,MAAM,CAAC;IACb,OAAO,EAAE,MAAM,CAAC;IAChB,IAAI,EAAE,MAAM,CAAC;IACb,KAAK,EAAE,MAAM,CAAC;CACf;AA0ED,yDAAyD;AACzD,wBAAgB,aAAa,CAAC,IAAI,EAAE,MAAM,GAAG,cAAc,EAAE,CAoC5D"}

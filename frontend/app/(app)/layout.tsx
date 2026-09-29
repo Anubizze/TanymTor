@@ -1,6 +1,7 @@
 import { AuthGuard } from "@/components/auth/AuthGuard";
 import { DataProvider } from "@/components/data/DataProvider";
 import { Sidebar } from "@/components/layout/Sidebar";
+import { LocalDataNotice } from "@/components/data/LocalDataNotice";
 
 export default function AppLayout({
   children,
@@ -13,7 +14,7 @@ export default function AppLayout({
         <div className="app-backdrop min-h-screen">
           <Sidebar />
           <main className="ml-72 min-h-screen px-8 pb-14 pt-4">
-            <div className="mx-auto max-w-[1400px]">{children}</div>
+            <div className="mx-auto max-w-[1400px]"><LocalDataNotice />{children}</div>
           </main>
         </div>
       </DataProvider>

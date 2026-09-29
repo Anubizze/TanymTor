@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { Loader2, Shield } from "lucide-react";
 import { useAuthStore } from "@/store/useAuthStore";
+import { LocalDataNotice } from "@/components/data/LocalDataNotice";
 
 export default function AdminLayout({
   children,
@@ -67,7 +68,7 @@ export default function AdminLayout({
           <p className="text-sm text-slate-500">{currentUser.name}</p>
         </div>
       </header>
-      <main className="mx-auto max-w-5xl px-6 py-8">{children}</main>
+      <main className="mx-auto max-w-5xl px-6 py-8"><LocalDataNotice />{children}</main>
     </div>
   );
 }

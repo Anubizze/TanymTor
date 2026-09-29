@@ -16,6 +16,7 @@ import {
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { ADMIN_CREDENTIALS, useAuthStore } from "@/store/useAuthStore";
+import { LocalDataNotice } from "@/components/data/LocalDataNotice";
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -55,6 +56,7 @@ export default function AdminLoginPage() {
         </div>
 
         <div className="rounded-2xl border border-white/10 bg-white p-7 shadow-2xl">
+          <LocalDataNotice />
           <h1 className="text-2xl font-bold tracking-tight text-slate-900">
             Вход администратора
           </h1>

@@ -21,3 +21,4 @@ __exportStar(require("./text"), exports);
 __exportStar(require("./series"), exports);
 __exportStar(require("./signals"), exports);
 __exportStar(require("./interventions"), exports);
+__exportStar(require("./grade-csv"), exports);
